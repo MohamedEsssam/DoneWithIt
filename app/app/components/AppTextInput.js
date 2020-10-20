@@ -4,7 +4,7 @@ import { View, StyleSheet, TextInput } from "react-native";
 import colors from "../config/colors";
 
 function AppTextInput({
-  iconType,
+  //   iconType,
   placeholder,
   width = "100%",
   ...otherProps
@@ -12,7 +12,7 @@ function AppTextInput({
   return (
     <View style={styles.container}>
       <TextInput
-        style={styles.text}
+        style={[styles.text, { width: width }]}
         placeholder={placeholder}
         {...otherProps}
       />
