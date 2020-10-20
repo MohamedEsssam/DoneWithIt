@@ -3,6 +3,7 @@ import { ImageBackground, View, StyleSheet, Image } from "react-native";
 import AppButton from "../components/AppButton";
 
 import AppText from "../components/AppText";
+import colors from "../config/colors";
 
 function WelcomeScreen() {
   return (
@@ -18,12 +19,12 @@ function WelcomeScreen() {
       <View style={styles.buttonContainer}>
         <AppButton
           title="Sign in"
-          color="red"
+          color={colors.primary}
           onPress={() => console.log("go to Sign in page")}
         />
         <AppButton
           title="Sign up"
-          color="dodgerblue"
+          color={colors.secondary}
           onPress={() => console.log("go to Sign up page")}
         />
       </View>
