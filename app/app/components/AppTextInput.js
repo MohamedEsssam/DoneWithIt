@@ -1,18 +1,26 @@
 import React from "react";
 import { View, StyleSheet, TextInput } from "react-native";
 
+import AppIcon from "./AppIcon";
 import colors from "../config/colors";
 
 function AppTextInput({
-  //   iconType,
   placeholder,
   width = "100%",
+  iconType,
+  iconSize = 30,
   ...otherProps
 }) {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { width }]}>
+      <AppIcon
+        name={iconType}
+        size={iconSize}
+        backgroundColor={colors.primary}
+        color={colors.white}
+      />
       <TextInput
-        style={[styles.text, { width: width }]}
+        style={styles.text}
         placeholder={placeholder}
         {...otherProps}
       />

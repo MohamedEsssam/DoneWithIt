@@ -1,7 +1,8 @@
 import React from "react";
-import { Image, SafeAreaView, StyleSheet, View } from "react-native";
+import { View, Image, StyleSheet } from "react-native";
 import * as Yup from "yup";
 
+import AppScreen from "../AppScreen";
 import FromContainer from "./FormContainer";
 import FormField from "./FormField";
 import SubmitButton from "./SubmitButton";
@@ -20,7 +21,7 @@ const validationSchema = Yup.object().shape({
 
 function AppLoginForm(props) {
   return (
-    <SafeAreaView>
+    <AppScreen>
       <Image
         style={styles.logo}
         source={require("../../assets/logo-red.png")}
@@ -31,28 +32,32 @@ function AppLoginForm(props) {
         validationSchema={validationSchema}
       >
         <>
-          <FormField
-            name="email"
-            autoCapitalize="none"
-            autoCorrect={false}
-            iconName="email"
-            keyboardType="email-address"
-            placeholder="Email"
-            textContentType="emailAddress"
-          />
-          <FormField
-            name="password"
-            secureTextEntry={true}
-            autoCapitalize="none"
-            autoCorrect={false}
-            iconName="lock"
-            placeholder="Password"
-            textContentType="password"
-          />
+          <View style={styles.inputContainer}>
+            <FormField
+              name="email"
+              autoCapitalize="none"
+              autoCorrect={false}
+              clearButtonMode="always"
+              iconType="email"
+              keyboardType="email-address"
+              placeholder="Email"
+              textContentType="emailAddress"
+            />
+            <FormField
+              name="password"
+              secureTextEntry={true}
+              autoCapitalize="none"
+              autoCorrect={false}
+              clearButtonMode="always"
+              iconType="lock"
+              placeholder="Password"
+              textContentType="password"
+            />
+          </View>
           <SubmitButton title="Sign in" color={colors.primary} />
         </>
       </FromContainer>
-    </SafeAreaView>
+    </AppScreen>
   );
 }
 const styles = StyleSheet.create({
@@ -61,7 +66,7 @@ const styles = StyleSheet.create({
     height: 80,
     alignSelf: "center",
     marginTop: 50,
-    marginBottom: 20,
+    marginBottom: 40,
   },
   textContainer: {
     justifyContent: "center",
@@ -77,6 +82,9 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 1,
     shadowRadius: 2,
+    paddingBottom: 20,
+  },
+  inputContainer: {
     paddingBottom: 20,
   },
 });
