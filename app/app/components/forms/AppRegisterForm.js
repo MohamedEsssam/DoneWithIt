@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Image } from "react-native";
+import { StyleSheet, Image, View } from "react-native";
 import * as Yup from "yup";
 import colors from "../../config/colors";
 
@@ -28,36 +28,38 @@ function AppRegisterForm(props) {
         validationSchema={validationSchema}
         onSubmit={(values) => console.log(values)}
       >
-        <FormField
-          name="email"
-          autoCapitalize="none"
-          autoCorrect={false}
-          clearButtonMode="always"
-          iconType="email"
-          keyboardType="email-address"
-          placeholder="Email"
-          textContentType="emailAddress"
-        />
-        <FormField
-          name="password"
-          secureTextEntry={true}
-          autoCapitalize="none"
-          autoCorrect={false}
-          clearButtonMode="always"
-          iconType="lock"
-          placeholder="Password"
-          textContentType="password"
-        />
-        <FormField
-          name="confirmPassword"
-          secureTextEntry={true}
-          autoCapitalize="none"
-          autoCorrect={false}
-          clearButtonMode="always"
-          iconType="lock"
-          placeholder="Confirm Password"
-          textContentType="password"
-        />
+        <View style={styles.inputContainer}>
+          <FormField
+            name="email"
+            autoCapitalize="none"
+            autoCorrect={false}
+            clearButtonMode="always"
+            iconType="email"
+            keyboardType="email-address"
+            placeholder="Email"
+            textContentType="emailAddress"
+          />
+          <FormField
+            name="password"
+            secureTextEntry={true}
+            autoCapitalize="none"
+            autoCorrect={false}
+            clearButtonMode="always"
+            iconType="lock"
+            placeholder="Password"
+            textContentType="password"
+          />
+          <FormField
+            name="confirmPassword"
+            secureTextEntry={true}
+            autoCapitalize="none"
+            autoCorrect={false}
+            clearButtonMode="always"
+            iconType="lock"
+            placeholder="Confirm Password"
+            textContentType="password"
+          />
+        </View>
         <SubmitButton title="Create an account" color={colors.primary} />
       </FromContainer>
     </AppScreen>
@@ -71,6 +73,9 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginTop: 50,
     marginBottom: 40,
+  },
+  inputContainer: {
+    paddingBottom: 20,
   },
 });
 
