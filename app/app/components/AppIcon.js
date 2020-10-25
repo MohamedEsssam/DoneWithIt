@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons, FontAwesome } from "@expo/vector-icons";
 
 function AppIcon({
   name,
@@ -15,7 +15,11 @@ function AppIcon({
         { backgroundColor, width: size, height: size, borderRadius: size / 2 },
       ]}
     >
-      <MaterialCommunityIcons name={name} size={size / 2} color={color} />
+      {name === "dollar" ? (
+        <FontAwesome name={name} color={color} size={size / 2} />
+      ) : (
+        <MaterialCommunityIcons name={name} color={color} size={size / 2} />
+      )}
     </View>
   );
 }

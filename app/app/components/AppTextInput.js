@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
   },
   text: {
-    fontSize: 20,
+    fontSize: 18,
     fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
     marginLeft: 10,
     flex: 1,
