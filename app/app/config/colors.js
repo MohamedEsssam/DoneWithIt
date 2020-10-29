@@ -7,4 +7,5 @@ export default {
   light: "#DCDCDC",
   danger: "#ff5252",
   yellow: "gold",
+  blue: "dodgerblue",
 };
