@@ -3,15 +3,15 @@ import { Image, View, StyleSheet, TouchableOpacity } from "react-native";
 import colors from "../../config/colors";
 import AppText from "../AppText";
 
-function Items({ image, title, price, onPress }) {
+function Items({ image, title, price, onPress, disabled = false }) {
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={onPress} disabled={disabled}>
       <View style={styles.container}>
         <View style={styles.card}>
           <Image source={image} style={styles.image} />
           <View style={styles.detailsContainer}>
             <AppText style={styles.title}>{title}</AppText>
-            <AppText style={styles.price}>{price}</AppText>
+            <AppText style={styles.price}>{"$" + price}</AppText>
           </View>
         </View>
       </View>

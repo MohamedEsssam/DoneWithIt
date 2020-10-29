@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, FlatList } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import Items from "./Items";
 import AppScreen from "../AppScreen";
 import ListItemSeparator from "./ItemSeparatorComponent";
 
 function AppListingItems({ items }) {
+  const [refreshing, setRefreshing] = useState(false);
+
+  const navigation = useNavigation();
   return (
     <AppScreen>
       <FlatList
@@ -18,9 +22,11 @@ function AppListingItems({ items }) {
             image={item.image}
             title={item.title}
             price={item.price}
-            onPress={() => console.log(item)}
+            onPress={() => navigation.navigate("ListingDetails", item)}
           />
         )}
+        refreshing={refreshing}
+        onRefresh={() => {}}
       />
     </AppScreen>
   );

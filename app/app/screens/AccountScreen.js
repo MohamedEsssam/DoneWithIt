@@ -10,6 +10,7 @@ const menuItems = [
   {
     title: "My Listings",
     icon: { name: "format-list-bulleted", backgroundColor: colors.primary },
+    targeScreen: "MyListings",
   },
   {
     title: "My Messages",
@@ -23,7 +24,7 @@ function AccountScreen({ navigation }) {
     <AppScreen style={{ backgroundColor: colors.light }}>
       <View style={styles.container}>
         <AppListInfo
-          image={require("../assets/logo-red.png")}
+          image={require("../assets/jacket.jpg")}
           title="Mohamed Essam"
           subTitle="mohamed@yahoo.com"
           style={{ borderRadius: 25 }}

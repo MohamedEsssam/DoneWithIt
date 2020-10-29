@@ -1,7 +1,7 @@
 import React from "react";
 import AppListingItems from "../components/lists/AppListingItems";
 
-function ListingsScreen(props) {
+function ListingsScreen({ navigation }) {
   const items = [
     {
       image: require("../assets/couch.jpg"),

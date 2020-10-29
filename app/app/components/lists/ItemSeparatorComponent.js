@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     bottom: 8,
     width: 250,
     height: 1,
-    backgroundColor: colors.light,
+    backgroundColor: colors.medium,
     opacity: 0.5,
   },
 });

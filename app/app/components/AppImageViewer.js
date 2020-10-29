@@ -1,27 +1,40 @@
 import React from "react";
-import { View, StyleSheet, Image } from "react-native";
+import { View, StyleSheet, Image, Alert } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 import AppScreen from "./AppScreen";
-import AppIcon from "./AppIcon";
 import colors from "../config/colors";
 
 function AppImageViewer({ image }) {
+  const navigation = useNavigation();
   return (
     <AppScreen style={styles.container}>
       <View style={styles.closeIcon}>
-        <AppIcon
+        <MaterialCommunityIcons
           name="close"
-          size={70}
-          backgroundColor={colors.black}
-          color={colors.blue}
+          size={40}
+          color={colors.white}
+          onPress={() => {
+            navigation.navigate("ListingDetails");
+          }}
         />
       </View>
       <View style={styles.deleteIcon}>
-        <AppIcon
+        <MaterialCommunityIcons
           name="trash-can-outline"
-          size={70}
-          backgroundColor={colors.black}
+          size={40}
           color={colors.danger}
+          onPress={() => {
+            Alert.alert(
+              "Delete Image",
+              "Are you sure you want delete this image ?",
+              [
+                { text: "Yes", onPress: () => navigation.navigate("Listings") },
+                { text: "No" },
+              ]
+            );
+          }}
         />
       </View>
       <Image source={image} style={styles.image} resizeMode="contain" />
@@ -36,13 +49,13 @@ const styles = StyleSheet.create({
   },
   closeIcon: {
     position: "absolute",
-    top: 5,
-    left: 5,
+    top: 20,
+    left: 20,
   },
   deleteIcon: {
     position: "absolute",
-    top: 5,
-    right: 5,
+    top: 20,
+    right: 20,
   },
   image: {
     width: "100%",

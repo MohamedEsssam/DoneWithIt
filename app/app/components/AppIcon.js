@@ -7,6 +7,7 @@ function AppIcon({
   size = 30,
   color = "#000",
   backgroundColor = "#fff",
+  onPress,
 }) {
   return (
     <View
@@ -18,7 +19,12 @@ function AppIcon({
       {name === "dollar" ? (
         <FontAwesome name={name} color={color} size={size / 2} />
       ) : (
-        <MaterialCommunityIcons name={name} color={color} size={size / 2} />
+        <MaterialCommunityIcons
+          name={name}
+          color={color}
+          size={size / 2}
+          onPress={onPress}
+        />
       )}
     </View>
   );
