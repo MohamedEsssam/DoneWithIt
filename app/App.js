@@ -13,6 +13,7 @@ import AccountNavigator from "./app/navigation/AccountNavigator";
 import FeedNavigator from "./app/navigation/FeedNavigator";
 import AppNavigator from "./app/navigation/AppNavigator";
 import navigationTheme from "./app/navigation/navigationTheme";
+import AppScreen from "./app/components/AppScreen";
 
 export default function App() {
   return (

@@ -1,5 +1,4 @@
 import React from "react";
-import { StyleSheet } from "react-native";
 import * as Yup from "yup";
 
 import AppScreen from "../AppScreen";
@@ -8,8 +7,10 @@ import FormField from "./FormField";
 import PickerField from "./PickerField";
 import SubmitButton from "./SubmitButton";
 import colors from "../../config/colors";
+import ImageField from "./ImageIField";
 
 const validationSchema = Yup.object().shape({
+  images: Yup.array().min(1, "You must insert at least image."),
   title: Yup.string().required().min(1).label("Title"),
   price: Yup.number().required().label("Price"),
   description: Yup.string().required().label("Description"),
@@ -28,6 +29,7 @@ function AppListingForm(props) {
     <AppScreen>
       <FromContainer
         initialValues={{
+          images: [],
           title: "",
           price: "",
           category: null,
@@ -37,6 +39,7 @@ function AppListingForm(props) {
         validationSchema={validationSchema}
       >
         <>
+          <ImageField name="images" />
           <FormField
             name="title"
             iconType="format-title"
@@ -77,13 +80,5 @@ function AppListingForm(props) {
     </AppScreen>
   );
 }
-const styles = StyleSheet.create({
-  logo: {
-    width: 80,
-    height: 80,
-    alignSelf: "center",
-    marginTop: 50,
-    marginBottom: 20,
-  },
-});
+
 export default AppListingForm;

@@ -49,12 +49,12 @@ const styles = StyleSheet.create({
   },
   closeIcon: {
     position: "absolute",
-    top: 20,
+    top: 5,
     left: 20,
   },
   deleteIcon: {
     position: "absolute",
-    top: 20,
+    top: 5,
     right: 20,
   },
   image: {

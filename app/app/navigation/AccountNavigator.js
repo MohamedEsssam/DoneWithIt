@@ -22,7 +22,11 @@ const AccountNavigator = () => (
       options={{ headerShown: false }}
     />
     <Stack.Screen name="ListingDetails" component={ListingDetailsScreen} />
-    <Stack.Screen name="ListingImage" component={ViewImageScreen} />
+    <Stack.Screen
+      name="ListingImage"
+      component={ViewImageScreen}
+      options={{ headerShown: false }}
+    />
   </Stack.Navigator>
 );
 
