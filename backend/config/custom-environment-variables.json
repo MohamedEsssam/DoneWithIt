@@ -1,0 +1,5 @@
+{
+  "dbName": "DB_NAME",
+  "mysqlPass": "MYSQL_PASS",
+  "authSecret": "CP_AUTH_SECRET"
+}
