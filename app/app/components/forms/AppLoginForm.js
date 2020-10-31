@@ -28,8 +28,11 @@ function AppLoginForm(props) {
       />
       <FromContainer
         initialValues={{ email: "", password: "" }}
-        onSubmit={(values) => console.log(values)}
         validationSchema={validationSchema}
+        onSubmit={(values, { resetForm }) => {
+          console.log(values);
+          resetForm();
+        }}
       >
         <>
           <View style={styles.inputContainer}>

@@ -35,8 +35,11 @@ function AppListingForm(props) {
           category: null,
           description: "",
         }}
-        onSubmit={(values) => console.log(values)}
         validationSchema={validationSchema}
+        onSubmit={(values, { resetForm }) => {
+          console.log(values);
+          resetForm();
+        }}
       >
         <>
           <ImageField name="images" />

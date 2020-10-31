@@ -26,7 +26,10 @@ function AppRegisterForm(props) {
       <FromContainer
         initialValues={{ email: "", password: "", confirmPassword: "" }}
         validationSchema={validationSchema}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values, { resetForm }) => {
+          console.log(values);
+          resetForm();
+        }}
       >
         <View style={styles.inputContainer}>
           <FormField
