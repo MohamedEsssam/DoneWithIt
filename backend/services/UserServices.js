@@ -5,7 +5,7 @@ class UserServices {
   async login(email, password) {
     const user = await this.getUserByEmail(email);
     if (!user) return;
-    if (!this.checkPassword(password, user.password)) return;
+    if (!(await this.checkPassword(password, user.password))) return;
 
     delete user["password"];
 
@@ -54,11 +54,11 @@ class UserServices {
   }
 
   async checkPassword(password, userPassword) {
-    return await bcrypt.compare(password, userPassword);
+    return bcrypt.compare(password, userPassword);
   }
 
   async hashPassword(password) {
-    const genSalt = bcrypt.genSalt(10);
+    const genSalt = await bcrypt.genSalt(10);
 
     return bcrypt.hash(password, genSalt);
   }

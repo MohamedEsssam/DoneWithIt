@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   StyleSheet,
@@ -12,14 +12,23 @@ import * as ImagePicker from "expo-image-picker";
 import colors from "../config/colors";
 
 function ImageInput({ imageUri, onChangeImage }) {
-  useEffect(() => {
-    requestPermission();
-  }, []);
+  const [didMount, setDidMount] = useState(false);
+
   const requestPermission = async () => {
     const { granted } = await ImagePicker.requestCameraRollPermissionsAsync();
     if (!granted)
       alert("You need to enable permission go to setting and enable it");
   };
+
+  useEffect(() => {
+    requestPermission();
+
+    setDidMount(true);
+    return () => setDidMount(false);
+  }, []);
+  if (!didMount) {
+    return null;
+  }
 
   const handlePress = () => {
     if (!imageUri) selectImage();

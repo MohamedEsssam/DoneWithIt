@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import { AppLoading } from "expo";
 import { NavigationContainer } from "@react-navigation/native";
+import UserContext from "./app/auth/context";
+import authStorage from "./app/auth/storage";
 
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 import LoginScreen from "./app/screens/LoginScreen";
@@ -8,17 +11,36 @@ import ListingFormScreen from "./app/screens/ListingFormScreen";
 import ListingsScreen from "./app/screens/ListingsScreen";
 import ViewImageScreen from "./app/screens/ViewImageScreen";
 import AccountScreen from "./app/screens/AccountScreen";
-import AuthNavigator from "./app/navigation/AuthNavigator";
 import AccountNavigator from "./app/navigation/AccountNavigator";
 import FeedNavigator from "./app/navigation/FeedNavigator";
-import AppNavigator from "./app/navigation/AppNavigator";
 import navigationTheme from "./app/navigation/navigationTheme";
-import AppScreen from "./app/components/AppScreen";
+import AuthNavigator from "./app/navigation/AuthNavigator";
+import AppNavigator from "./app/navigation/AppNavigator";
 
 export default function App() {
+  const [user, setUser] = useState();
+  const [isReady, setIsReady] = useState(false);
+
+  const getUserFromStorage = async () => {
+    const user = await authStorage.getUser();
+    if (!user) return;
+
+    setUser(user);
+  };
+
+  if (!isReady)
+    return (
+      <AppLoading
+        startAsync={getUserFromStorage}
+        onFinish={() => setIsReady(true)}
+      />
+    );
+
   return (
-    <NavigationContainer theme={navigationTheme}>
-      <AppNavigator />
-    </NavigationContainer>
+    <UserContext.Provider value={{ user, setUser }}>
+      <NavigationContainer theme={navigationTheme}>
+        {user ? <AppNavigator /> : <AuthNavigator />}
+      </NavigationContainer>
+    </UserContext.Provider>
   );
 }

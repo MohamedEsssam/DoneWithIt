@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, StyleSheet, FlatList } from "react-native";
+import UserContext from "../auth/context";
+import authStorage from "../auth/storage";
 
 import AppScreen from "../components/AppScreen";
 import AppListInfo from "../components/lists/AppListInfo";
@@ -20,13 +22,18 @@ const menuItems = [
 ];
 
 function AccountScreen({ navigation }) {
+  const { user, setUser } = useContext(UserContext);
+  const handleLogout = () => {
+    setUser(null);
+    authStorage.removeUser();
+  };
   return (
     <AppScreen style={{ backgroundColor: colors.light }}>
       <View style={styles.container}>
         <AppListInfo
           image={require("../assets/jacket.jpg")}
-          title="Mohamed Essam"
-          subTitle="mohamed@yahoo.com"
+          title={user.name}
+          subTitle={user.email}
           style={{ borderRadius: 25 }}
           disabled={true}
         />
@@ -59,7 +66,7 @@ function AccountScreen({ navigation }) {
           iconType="logout"
           iconBackground="#ffe66d"
           iconColor={colors.white}
-          onPress={() => console.log("logout")}
+          onPress={handleLogout}
           style={{ borderRadius: 35 }}
           touchable={true}
         />

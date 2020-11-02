@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/bottom-tabs": "^5.9.2",
     "@react-navigation/native": "^5.7.6",
@@ -26,7 +27,9 @@
     "react-native-safe-area-context": "3.1.4",
     "react-native-screens": "~2.10.1",
     "react-native-web": "~0.13.12",
-    "yup": "^0.29.3"
+    "yup": "^0.29.3",
+    "@react-native-community/netinfo": "5.9.6",
+    "expo-secure-store": "~9.2.0"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0"
