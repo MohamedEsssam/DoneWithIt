@@ -14,6 +14,18 @@ class ListingServices {
     });
   }
 
+  async getUserListings(userId) {
+    const query =
+      "SELECT BIN_TO_UUID(listingId) AS listingId, title, price, category, description, BIN_TO_UUID(userId) AS userId FROM listing WHERE userId = UUID_TO_BIN(?)";
+
+    return new Promise((resolve, reject) => {
+      sql.query(query, [userId], (err, result, field) => {
+        if (err) throw err;
+
+        resolve(result);
+      });
+    });
+  }
   async getListing(listingId) {
     if (!this.validId(listingId)) return;
 

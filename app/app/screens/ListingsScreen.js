@@ -14,11 +14,10 @@ function ListingsScreen({ navigation }) {
     const { data: items, ok: response } = await listingApi.getListings();
     if (!response) return;
 
-    console.log(items);
     setItems(items);
   };
 
-  return <AppListingItems items={items} />;
+  return <AppListingItems items={items} handleRefresh={fetchListings} />;
 }
 
 export default ListingsScreen;

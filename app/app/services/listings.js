@@ -6,6 +6,10 @@ const getListings = () => {
   return client.get(`${endpoint}`);
 };
 
+const getUserListings = (userId) => {
+  return client.get(`/user/${userId}/listings`);
+};
+
 const getListing = (listingId) => {
   return client.get(`${endpoint}/${listingId}`);
 };
@@ -22,6 +26,7 @@ const deleteListing = (listing) => {};
 
 export default {
   getListings,
+  getUserListings,
   getListing,
   addListing,
   updateListing,

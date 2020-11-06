@@ -6,7 +6,7 @@ import Items from "./Items";
 import AppScreen from "../AppScreen";
 import ListItemSeparator from "./ItemSeparatorComponent";
 
-function AppListingItems({ items }) {
+function AppListingItems({ items, handleRefresh }) {
   const [refreshing, setRefreshing] = useState(false);
 
   const navigation = useNavigation();
@@ -22,11 +22,20 @@ function AppListingItems({ items }) {
             imageUri={`http://192.168.1.12:9000/listingImage-${item.listingId}`}
             title={item.title}
             price={item.price}
-            onPress={() => navigation.navigate("ListingDetails", item)}
+            onPress={() =>
+              navigation.navigate("ListingDetails", {
+                ...item,
+                imageUri: `http://192.168.1.12:9000/listingImage-${item.listingId}`,
+              })
+            }
           />
         )}
         refreshing={refreshing}
-        onRefresh={() => {}}
+        onRefresh={() => {
+          setRefreshing(true);
+          handleRefresh();
+          setRefreshing(false);
+        }}
       />
     </AppScreen>
   );

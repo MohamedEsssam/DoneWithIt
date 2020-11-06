@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import * as Yup from "yup";
+import UserContext from "../../auth/context";
+import { useNavigation } from "@react-navigation/native";
+import listingApi from "../../services/listings";
+import imageApi from "../../services/image";
 
 import AppScreen from "../AppScreen";
 import FromContainer from "./FormContainer";
@@ -25,6 +29,24 @@ const categories = [
 ];
 
 function AppListingForm(props) {
+  const { user } = useContext(UserContext);
+  const navigation = useNavigation();
+
+  const onSubmit = async (values) => {
+    const { data: listing, ok: response } = await listingApi.addListing({
+      ...values,
+      userId: user.userId,
+    });
+    if (!response) return;
+
+    const { ok } = await imageApi.PostImage(
+      listing.listingId,
+      values.images[0].base64
+    );
+    if (!ok) return console.log("error");
+
+    navigation.navigate("Listings");
+  };
   return (
     <AppScreen>
       <FromContainer
@@ -36,10 +58,7 @@ function AppListingForm(props) {
           description: "",
         }}
         validationSchema={validationSchema}
-        onSubmit={(values, { resetForm }) => {
-          console.log(values);
-          resetForm();
-        }}
+        onSubmit={onSubmit}
       >
         <>
           <ImageField name="images" />

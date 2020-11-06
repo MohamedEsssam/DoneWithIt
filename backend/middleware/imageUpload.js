@@ -1,29 +1,13 @@
-const multer = require("multer");
+const path = require("path").resolve(__dirname, "../public");
+const fs = require("fs");
 
-const storage = multer.diskStorage({
-  destination: "public",
+module.exports = function (req, res, next) {
+  const image = req.body.image;
+  const uuid = req.body.uuid;
 
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  },
-});
+  fs.writeFileSync(path + `/listingImage-${uuid}`, image, "base64", (err) => {
+    if (err) throw err;
+  });
 
-const fileFilter = (req, file, cb) => {
-  if (
-    !file.mimetype.includes("jpeg") &&
-    !file.mimetype.includes("jpg") &&
-    !file.mimetype.includes("png")
-  )
-    return cb("File is not an image", false);
-  return cb(null, true);
+  next();
 };
-
-const limits = {
-  fileSize: 4 * 1024 * 1024,
-};
-
-module.exports = multer({
-  storage: storage,
-  fileFilter: fileFilter,
-  limits: limits,
-}).array("image", 4);

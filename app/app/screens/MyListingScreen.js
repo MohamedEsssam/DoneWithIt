@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { View, StyleSheet, Image, FlatList } from "react-native";
+import UserContext from "../auth/context";
+import listingApi from "../services/listings";
 
 import AppScreen from "../components/AppScreen";
 import AppText from "../components/AppText";
@@ -7,62 +9,60 @@ import Items from "../components/lists/Items";
 import ListItemSeparator from "../components/lists/ItemSeparatorComponent";
 import colors from "../config/colors";
 
-const myListings = [
-  {
-    image: require("../assets/couch.jpg"),
-    title: "Couch",
-    price: "350",
-    id: 1,
-  },
-  {
-    image: require("../assets/jacket.jpg"),
-    title: "Red Jacket",
-    price: "150",
-    id: 2,
-  },
-  {
-    image: require("../assets/jacket.jpg"),
-    title: "Red Jacket",
-    price: "150",
-    id: 3,
-  },
-  {
-    image: require("../assets/jacket.jpg"),
-    title: "Red Jacket",
-    price: "450",
-    id: 4,
-  },
-];
-
 function MyListingScreen({ navigation }) {
+  const { user } = useContext(UserContext);
   const [refreshing, setRefreshing] = useState(false);
+  const [myListings, setMyListings] = useState([]);
+
+  useEffect(() => {
+    fetchListings();
+  }, []);
+
+  const fetchListings = async () => {
+    const { data: items, ok: response } = await listingApi.getUserListings(
+      user.userId
+    );
+    if (!response) return;
+
+    setMyListings(items);
+  };
+
   return (
     <AppScreen style={styles.container}>
       <View style={styles.line}></View>
       <View style={styles.imageContainer}>
         <Image source={require("../assets/jacket.jpg")} style={styles.image} />
       </View>
-      <AppText style={styles.name}>Mohamed Essam</AppText>
+      <AppText style={styles.name}>{user.name}</AppText>
       <View style={{ height: 310 }}>
         <FlatList
           style={styles.list}
           data={myListings}
           showsVerticalScrollIndicator={false}
-          keyExtractor={(item) => item.id.toString()}
+          keyExtractor={(item) => item.listingId.toString()}
           ItemSeparatorComponent={ListItemSeparator}
           renderItem={({ item }) => (
             <Items
-              image={item.image}
+              imageUri={`http://192.168.1.12:9000/listingImage-${item.listingId}`}
               title={item.title}
               price={item.price}
-              onPress={() => navigation.navigate("ListingDetails", item)}
+              onPress={() =>
+                navigation.navigate("ListingDetails", {
+                  ...item,
+                  imageUri: `http://192.168.1.12:9000/listingImage-${item.listingId}`,
+                })
+              }
             />
           )}
           contentContainerStyle={{
             marginBottom: 80,
           }}
           refreshing={refreshing}
-          onRefresh={() => {}}
+          onRefresh={() => {
+            setRefreshing(true);
+            fetchListings(user.userId);
+            setRefreshing(false);
+          }}
         />
       </View>
     </AppScreen>

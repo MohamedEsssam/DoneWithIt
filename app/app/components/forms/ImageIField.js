@@ -22,7 +22,7 @@ function AppFormImagePicker({ name }) {
   return (
     <>
       <AppListImageInput
-        imageUris={values[name]}
+        images={values[name]}
         onAddImage={handleAdd}
         onRemovedImage={handleRemove}
       />

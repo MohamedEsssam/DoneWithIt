@@ -1,13 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const imageUpload = require("../../middleware/imageUpload");
-const imgRename = require("../../middleware/imgRename");
 
-router.post("/", imageUpload, imgRename, async (req, res) => {
-  if (!req.files || req.files.length === 0)
+router.post("/", imageUpload, async (req, res) => {
+  if (!req.body.image || req.body.uuid === 0)
     return res.status(400).send("No images uploaded");
 
-  res.status(200).json(req.files);
+  res.status(200).json("image posted");
 });
 
 module.exports = router;

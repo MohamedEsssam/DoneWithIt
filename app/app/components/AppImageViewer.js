@@ -37,7 +37,11 @@ function AppImageViewer({ image }) {
           }}
         />
       </View>
-      <Image source={image} style={styles.image} resizeMode="contain" />
+      <Image
+        source={{ uri: image }}
+        style={styles.image}
+        resizeMode="contain"
+      />
     </AppScreen>
   );
 }
@@ -51,11 +55,13 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 5,
     left: 20,
+    zIndex: 1,
   },
   deleteIcon: {
     position: "absolute",
     top: 5,
     right: 20,
+    zIndex: 1,
   },
   image: {
     width: "100%",

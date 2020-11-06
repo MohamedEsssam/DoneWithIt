@@ -10,11 +10,11 @@ function ListingDetailsScreen({ navigation, route }) {
   return (
     <AppScreen>
       <Items
-        image={listings.image}
+        imageUri={listings.imageUri}
         title={listings.title}
         price={listings.price}
         onPress={() =>
-          navigation.navigate("ListingImage", { image: listings.image })
+          navigation.navigate("ListingImage", { image: listings.imageUri })
         }
       />
       <AppListInfo
