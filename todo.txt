@@ -1,0 +1,8 @@
+/*********************************************************************/
+*     List to do in but first finish military services insha'llag    *
+*     pray for me                                                    *
+/********************************************************************/
+1- handle update and delete listings
+2- handle change user profile pic
+3- make app real time application using socket.io
+4- handle authentication using jwt
