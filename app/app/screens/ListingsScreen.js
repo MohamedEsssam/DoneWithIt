@@ -1,27 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import listingApi from "../services/listings";
+
 import AppListingItems from "../components/lists/AppListingItems";
 
 function ListingsScreen({ navigation }) {
-  const items = [
-    {
-      image: require("../assets/couch.jpg"),
-      title: "Couch",
-      price: "350",
-      id: 1,
-    },
-    {
-      image: require("../assets/jacket.jpg"),
-      title: "Red Jacket",
-      price: "150",
-      id: 2,
-    },
-    {
-      image: require("../assets/jacket.jpg"),
-      title: "Red Jacket",
-      price: "150",
-      id: 3,
-    },
-  ];
+  let [items, setItems] = useState([]);
+
+  useEffect(() => {
+    fetchListings();
+  }, []);
+
+  const fetchListings = async () => {
+    const { data: items, ok: response } = await listingApi.getListings();
+    if (!response) return;
+
+    console.log(items);
+    setItems(items);
+  };
+
   return <AppListingItems items={items} />;
 }
 

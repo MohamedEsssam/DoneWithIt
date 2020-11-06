@@ -41,9 +41,6 @@ class ListingServices {
     return await this.getListingById(listingId);
   }
 
-  async updateListing(userId, listingId) {}
-  async deleteListing(userId, listingId) {}
-
   generateId() {
     return new Promise((resolve, reject) => {
       sql.query("SELECT UUID() AS listingId", (err, result, field) => {
@@ -72,6 +69,12 @@ class ListingServices {
 
     return uuidRegex.test(id);
   }
+
+  //********************************************************************** */
+  //TODO in the future it's super easy but i have to finish my military service :'( pray for me
+  //********************************************************************** */
+  async updateListing(userId, listingId) {}
+  async deleteListing(userId, listingId) {}
 }
 
 module.exports = ListingServices;

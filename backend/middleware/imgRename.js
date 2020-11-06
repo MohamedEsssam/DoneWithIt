@@ -2,18 +2,17 @@ const path = require("path").resolve(__dirname, "../public");
 const fs = require("fs");
 
 module.exports = function (req, res, next) {
-  const uid = req.query.uid;
-  const name = req.query.name;
+  const uuid = req.query.uuid;
 
-  req.files.map((img, index) => {
+  req.files.map((img) => {
     fs.rename(
       path + "/" + img.filename,
-      path + "/" + uid + "-" + name + "-img" + (index + 1),
+      path + "/" + "listingImage-" + uuid,
       function (err) {
         if (err) console.log("ERROR: " + err);
       }
     );
-    img.filename = uid + "-" + name + "-img" + (index + 1);
+    img.filename = "listingImage-" + uuid;
   });
 
   next();

@@ -15,11 +15,11 @@ function AppListingItems({ items }) {
       <FlatList
         data={items}
         showsVerticalScrollIndicator={false}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item.listingId.toString()}
         ItemSeparatorComponent={ListItemSeparator}
         renderItem={({ item }) => (
           <Items
-            image={item.image}
+            imageUri={`http://192.168.1.12:9000/listingImage-${item.listingId}`}
             title={item.title}
             price={item.price}
             onPress={() => navigation.navigate("ListingDetails", item)}
