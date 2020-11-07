@@ -10,3 +10,17 @@
 3- handle change user profile pic.                                          ❌
 4- make app real time application using socket.io (frontend, backed).       ✅
 5- handle authentication using jwt.                                         ✅ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
