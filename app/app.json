@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "app",
-    "slug": "app",
+    "name": "DoneWithIt",
+    "slug": "donewithit",
     "version": "1.0.0",
     "orientation": "portrait",
     "splash": {
@@ -20,6 +20,8 @@
     },
     "web": {
       "favicon": "./app/assets/favicon.png"
-    }
+    },
+    "description": "Real-time mobile application to help you to sell the old things that you don't use and don't need, and the person who interset in this product will send you messages to reach you to sell the product, it's suitable for iPhone and Android devices. Technologies used in the application: React-Native, NodeJs, MySql, Socket.io.",
+    "githubUrl": "https://github.com/MohamedEsssam/DoneWithIt/tree/64f9d91806af0ea9d74f9dfc5ac6450dac3b3551"
   }
 }
