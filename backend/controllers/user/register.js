@@ -6,9 +6,13 @@ module.exports = async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
-  const user = await UserServicesInstance.register(name, email, password);
+  const token = await UserServicesInstance.register(name, email, password);
 
-  if (!user) return res.status(404).send("User already exist.");
+  if (!token) return res.status(404).send("User already exist.");
 
-  return res.status(200).send(user);
+  return res
+    .status(200)
+    .header("x-auth-token", token)
+    .header("access-control-expose-headers", "x-auth-token")
+    .send(token);
 };

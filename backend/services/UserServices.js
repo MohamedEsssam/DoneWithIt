@@ -1,5 +1,7 @@
 const sql = require("../startup/connectDB");
 const bcrypt = require("bcrypt");
+const AuthServices = require("./AuthServices");
+const AuthServicesInstance = new AuthServices();
 
 class UserServices {
   async login(email, password) {
@@ -9,7 +11,9 @@ class UserServices {
 
     delete user["password"];
 
-    return user;
+    const token = AuthServicesInstance.generateToken(user);
+
+    return token;
   }
 
   async register(name, email, password) {
@@ -25,7 +29,11 @@ class UserServices {
       if (err) throw err;
     });
 
-    return await this.getUserByEmail(email);
+    user = await this.getUserByEmail(email);
+
+    const token = AuthServicesInstance.generateToken(user);
+
+    return token;
   }
 
   async getUserById(userId) {

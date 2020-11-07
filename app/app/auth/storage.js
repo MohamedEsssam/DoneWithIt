@@ -2,15 +2,15 @@ import * as SecureStore from "expo-secure-store";
 
 const key = "user";
 
-const storeUser = async (user) => {
+const storeToken = async (authToken) => {
   try {
-    await SecureStore.setItemAsync(key, JSON.stringify(user));
+    await SecureStore.setItemAsync(key, JSON.stringify(authToken));
   } catch (error) {
     console.log("Error storing the user: ", error);
   }
 };
 
-const getUser = async () => {
+const getToken = async () => {
   try {
     return JSON.parse(await SecureStore.getItemAsync(key));
   } catch (error) {
@@ -18,7 +18,7 @@ const getUser = async () => {
   }
 };
 
-const removeUser = async () => {
+const removeToken = async () => {
   try {
     await SecureStore.deleteItemAsync(key);
   } catch (error) {
@@ -27,7 +27,7 @@ const removeUser = async () => {
 };
 
 export default {
-  storeUser,
-  getUser,
-  removeUser,
+  storeToken,
+  getToken,
+  removeToken,
 };

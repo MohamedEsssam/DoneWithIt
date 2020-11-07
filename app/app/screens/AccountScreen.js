@@ -25,7 +25,7 @@ function AccountScreen({ navigation }) {
   const { user, setUser } = useContext(UserContext);
   const handleLogout = () => {
     setUser(null);
-    authStorage.removeUser();
+    authStorage.removeToken();
   };
   return (
     <AppScreen style={{ backgroundColor: colors.light }}>

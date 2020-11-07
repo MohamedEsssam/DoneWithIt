@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { AppLoading } from "expo";
 import { NavigationContainer } from "@react-navigation/native";
+import jwdDecode from "jwt-decode";
 import UserContext from "./app/auth/context";
 import authStorage from "./app/auth/storage";
 
@@ -22,10 +23,10 @@ export default function App() {
   const [isReady, setIsReady] = useState(false);
 
   const getUserFromStorage = async () => {
-    const user = await authStorage.getUser();
-    if (!user) return;
+    const token = await authStorage.getToken();
+    if (!token) return;
 
-    setUser(user);
+    setUser(jwdDecode(user));
   };
 
   if (!isReady)

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { StyleSheet, Image, View } from "react-native";
 import * as Yup from "yup";
+import jwdDecode from "jwt-decode";
 import UserContext from "../../auth/context";
 import userApi from "../../services/user";
 import authStorage from "../../auth/storage";
@@ -25,12 +26,13 @@ function AppRegisterForm(props) {
   const userContext = useContext(UserContext);
   const [registerFailed, setRegisterFailed] = useState(false);
   const onSubmit = async (values) => {
-    const { data: user, ok: response } = await userApi.register(values);
+    const { data: token, ok: response } = await userApi.register(values);
     if (!response) return setRegisterFailed(true);
 
     setRegisterFailed(false);
+    const user = jwdDecode(token);
     userContext.setUser(user);
-    authStorage.storeUser(user);
+    authStorage.storeToken(token);
   };
   return (
     <AppScreen>

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { View, Image, StyleSheet } from "react-native";
 import * as Yup from "yup";
+import jwdDecode from "jwt-decode";
 import userApi from "../../services/user";
 import authStorage from "../../auth/storage";
 
@@ -27,12 +28,13 @@ function AppLoginForm(props) {
   const userContext = useContext(UserContext);
   const [loginFailed, setLoginFailed] = useState(false);
   const onSubmit = async (values) => {
-    const { data: user, ok: response } = await userApi.login(values);
+    const { data: token, ok: response } = await userApi.login(values);
     if (!response) return setLoginFailed(true);
 
     setLoginFailed(false);
+    const user = jwdDecode(token);
     userContext.setUser(user);
-    authStorage.storeUser(user);
+    authStorage.storeToken(token);
   };
 
   return (
