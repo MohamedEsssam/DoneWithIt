@@ -3,7 +3,7 @@ const sql = require("../startup/connectDB");
 class ListingServices {
   async getListings() {
     const query =
-      "SELECT BIN_TO_UUID(listingId) AS listingId, title, price, category, description, BIN_TO_UUID(userId) AS userId FROM listing";
+      "SELECT BIN_TO_UUID(listingId) AS listingId, title, price, category, description, BIN_TO_UUID(userId) AS userId FROM listing ORDER BY postedDate DESC";
 
     return new Promise((resolve, reject) => {
       sql.query(query, (err, result, field) => {
@@ -16,7 +16,7 @@ class ListingServices {
 
   async getUserListings(userId) {
     const query =
-      "SELECT BIN_TO_UUID(listingId) AS listingId, title, price, category, description, BIN_TO_UUID(userId) AS userId FROM listing WHERE userId = UUID_TO_BIN(?)";
+      "SELECT BIN_TO_UUID(listingId) AS listingId, title, price, category, description, BIN_TO_UUID(userId) AS userId FROM listing WHERE userId = UUID_TO_BIN(?) ORDER BY postedDate DESC";
 
     return new Promise((resolve, reject) => {
       sql.query(query, [userId], (err, result, field) => {
@@ -26,6 +26,7 @@ class ListingServices {
       });
     });
   }
+
   async getListing(listingId) {
     if (!this.validId(listingId)) return;
 
@@ -47,7 +48,7 @@ class ListingServices {
     if (!this.validId(userId) || !this.validId(listingId)) return;
 
     const query =
-      "INSERT INTO listing (listingId, title, price, category, description, userId) VALUES (UUID_TO_BIN(?), ?, ?, ?, ?, UUID_TO_BIN(?));";
+      "INSERT INTO listing (listingId, title, price, category, description, postedDate, userId) VALUES (UUID_TO_BIN(?), ?, ?, ?, ?, NOW(), UUID_TO_BIN(?));";
     sql.query(query, [listingId, title, price, category, description, userId]);
 
     return await this.getListingById(listingId);

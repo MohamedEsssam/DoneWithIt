@@ -1,8 +1,12 @@
-/*********************************************************************/
-*     List to do in but first finish military services insha'llag    *
-*     pray for me                                                    *
-/********************************************************************/
-1- handle update and delete listings
-2- handle change user profile pic
-3- make app real time application using socket.io
-4- handle authentication using jwt
+/***********************************************************************************/
+*            List to do in but first finish military services insha'llah           *
+*                               pray for me                                        *
+/**********************************************************************************/
+1- sort listing by date of post.                                            ✅
+2- handle update and delete listings.                                       ❌
+3- handle update and delete listing image.                                  ❌
+4- forbidden delete listing image if there is only one.                     ❌
+5- handle (add, update, delete) multiple images for listings.               ❌
+3- handle change user profile pic.                                          ❌
+4- make app real time application using socket.io (frontend, backed).       ✅
+5- handle authentication using jwt.                                         ✅ 

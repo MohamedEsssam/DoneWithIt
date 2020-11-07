@@ -26,13 +26,14 @@ const categories = [
   { label: "Clothing", id: 2 },
   { label: "Camera", id: 3 },
   { label: "Mobile", id: 4 },
+  { label: "Games", id: 5 },
 ];
 
 function AppListingForm(props) {
   const { user } = useContext(UserContext);
   const navigation = useNavigation();
 
-  const onSubmit = async (values) => {
+  const onSubmit = async (values, { resetForm }) => {
     const { data: listing, ok: response } = await listingApi.addListing({
       ...values,
       userId: user.userId,
@@ -46,6 +47,8 @@ function AppListingForm(props) {
     if (!ok) return console.log("error");
 
     navigation.navigate("Listings");
+
+    resetForm();
   };
   return (
     <AppScreen>
