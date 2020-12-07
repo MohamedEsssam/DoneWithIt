@@ -54,6 +54,60 @@ class ListingServices {
     return await this.getListingById(listingId);
   }
 
+  async updateListing(
+    listingId,
+    userId,
+    { title, price, category, description }
+  ) {
+    if (!this.validId(listingId)) return;
+    if (!this.validId(userId)) return;
+
+    let updateFields = "";
+    if (title) updateFields = updateFields.concat(`title='${title}',`);
+    if (price) updateFields = updateFields.concat(`price='${price}',`);
+    if (category) updateFields = updateFields.concat(`category='${category}',`);
+    if (description)
+      updateFields = updateFields.concat(`description='${description}',`);
+
+    updateFields =
+      updateFields.substring(updateFields.length - 1, updateFields.length) ===
+      ","
+        ? updateFields.slice(0, -1)
+        : updateFields;
+
+    const query =
+      "UPDATE listing SET " +
+      updateFields.trim() +
+      ` WHERE listingId=UUID_TO_BIN(?) AND userId=UUID_TO_BIN(?)`;
+
+    sql.query(query, [listingId, userId], (err, result, field) => {
+      if (err) throw err;
+    });
+
+    return await this.getListingById(listingId);
+  }
+
+  async deleteListing(listingId, userId) {
+    if (!this.validId(listingId)) return;
+    if (!this.validId(userId)) return;
+
+    const listing = await this.getListingById(listingId);
+    if (!listing) return;
+
+    sql.query(
+      "DELETE FROM listing WHERE listingId = UUID_TO_BIN(?) AND userId = UUID_TO_BIN(?);",
+      [listingId, userId],
+      (err, result) => {
+        if (err) throw err;
+      }
+    );
+
+    return listing;
+  }
+
+  /*******************************************************************
+   *                     Helper Methods                              *
+   ******************************************************************/
   generateId() {
     return new Promise((resolve, reject) => {
       sql.query("SELECT UUID() AS listingId", (err, result, field) => {
@@ -82,12 +136,6 @@ class ListingServices {
 
     return uuidRegex.test(id);
   }
-
-  //********************************************************************** */
-  //TODO in the future it's super easy but i have to finish my military service :'( pray for me
-  //********************************************************************** */
-  async updateListing(userId, listingId) {}
-  async deleteListing(userId, listingId) {}
 }
 
 module.exports = ListingServices;

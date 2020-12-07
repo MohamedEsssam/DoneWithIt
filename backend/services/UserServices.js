@@ -36,6 +36,9 @@ class UserServices {
     return token;
   }
 
+  /*******************************************************************
+   *                     Helper Methods                              *
+   ******************************************************************/
   async getUserById(userId) {
     const query = "SELECT * FROM user WHERE userId = UUID_TO_BIN(?)";
 

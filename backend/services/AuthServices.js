@@ -9,5 +9,7 @@ class AuthServices {
 
     return token;
   }
+
+  verifyToken(token) {}
 }
 module.exports = AuthServices;

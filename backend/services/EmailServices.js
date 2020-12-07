@@ -1,2 +1,2 @@
 class EmailServices {}
-module.exports = EmailServoces;
+module.exports = EmailServices;
