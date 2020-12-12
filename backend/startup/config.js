@@ -10,6 +10,9 @@ module.exports = () => {
   if (!config.get("dbName"))
     throw new Error("FATAL ERROR: database is not defined.");
 
-  if (!config.get("mailerApiKey"))
-    throw new Error("FATAL ERROR: mailerApiKey is not defined.");
+  if (!config.get("mailerUser"))
+    throw new Error("FATAL ERROR: mailerUser is not defined.");
+
+  if (!config.get("mailerPass"))
+    throw new Error("FATAL ERROR: mailerPass is not defined.");
 };

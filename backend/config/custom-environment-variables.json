@@ -2,5 +2,7 @@
   "dbName": "DB_NAME",
   "mysqlPass": "MYSQL_PASS",
   "authSecret": "CP_AUTH_SECRET",
-  "mailerApiKey":"SENDGRID_API_KEY"
+  "mailerUser":"NODEMAILER_USER",
+  "mailerPass":"NODEMAILER_PASS"
+
 }

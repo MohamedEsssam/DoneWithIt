@@ -27,9 +27,17 @@ const validationSchema = Yup.object().shape({
 function AppLoginForm(props) {
   const userContext = useContext(UserContext);
   const [loginFailed, setLoginFailed] = useState(false);
+  const [error, setError] = useState("");
   const onSubmit = async (values) => {
-    const { data: token, ok: response } = await userApi.login(values);
-    if (!response) return setLoginFailed(true);
+    const { data: token, ok: response, status } = await userApi.login(values);
+    if (status === 401) {
+      setError("Verify your account.");
+      return setLoginFailed(true);
+    }
+    if (!response) {
+      setError("Invalid email or password");
+      return setLoginFailed(true);
+    }
 
     setLoginFailed(false);
     const user = jwdDecode(token);
@@ -49,10 +57,7 @@ function AppLoginForm(props) {
         onSubmit={onSubmit}
       >
         <>
-          <FormErrorMessage
-            error="Invalid email or password"
-            visible={loginFailed}
-          />
+          <FormErrorMessage error={error} visible={loginFailed} />
           <View style={styles.inputContainer}>
             <FormField
               name="email"

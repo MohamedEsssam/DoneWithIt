@@ -9,6 +9,9 @@ module.exports = async (req, res) => {
 
   if (!token) return res.status(404).send("Invalid email or password.");
 
+  if (token === "not verified")
+    return res.status(401).send("Email not verified.");
+
   return res
     .status(200)
     .header("x-auth-token", token)

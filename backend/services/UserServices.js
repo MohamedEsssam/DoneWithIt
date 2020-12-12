@@ -13,6 +13,8 @@ class UserServices {
     if (!user) return;
     if (!(await this.checkPassword(password, user.password))) return;
 
+    if (user.status !== "verified") return "not verified";
+
     delete user["password"];
 
     const token = AuthServicesInstance.generateToken(user);
@@ -59,7 +61,7 @@ class UserServices {
 
   getUserByEmail(email) {
     let query =
-      "SELECT BIN_TO_UUID(userId) AS userId, name, email, password FROM user WHERE email = ? ;";
+      "SELECT BIN_TO_UUID(userId) AS userId, name, email, password, status FROM user WHERE email = ? ;";
 
     return new Promise((resolve, reject) => {
       sql.query(query, [email], (err, result, field) => {
