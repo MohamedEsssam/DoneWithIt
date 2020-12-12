@@ -4,6 +4,10 @@ const AuthServices = require("./AuthServices");
 const AuthServicesInstance = new AuthServices();
 
 class UserServices {
+  constructor(EmailServices) {
+    this.EmailServices = EmailServices;
+  }
+
   async login(email, password) {
     const user = await this.getUserByEmail(email);
     if (!user) return;
@@ -32,6 +36,8 @@ class UserServices {
     user = await this.getUserByEmail(email);
 
     const token = AuthServicesInstance.generateToken(user);
+
+    this.EmailServices.sendVerificationEmail(user);
 
     return token;
   }

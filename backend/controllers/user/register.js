@@ -1,5 +1,7 @@
+const EmailServices = require("../../services/EmailServices");
+const EmailServicesInstance = new EmailServices();
 const UserServices = require("../../services/UserServices");
-const UserServicesInstance = new UserServices();
+const UserServicesInstance = new UserServices(EmailServicesInstance);
 
 module.exports = async (req, res) => {
   const name = req.body.name;

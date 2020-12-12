@@ -1,5 +1,6 @@
 {
   "dbName": "",
   "mysqlPass": "",
-  "authSecret": ""
+  "authSecret": "",
+  "mailerApiKey":""
 }

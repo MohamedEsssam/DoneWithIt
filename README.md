@@ -7,13 +7,13 @@ Real-time mobile application to help you to sell the old things that you don't u
 ### 1- ios
 
 <p align="center">
-  <img src="http://gifimgs.com/res/1120/5fa694d34b458106983476.gif"/>
+  <img src="https://s8.gifyu.com/images/doneWithIt_ios_demo.gif"/>
 </p>
 
 ### 2- android
 
 <p align="center">
-  <img src="http://gifimgs.com/res/1120/5fa6aa019f2dd134842787.gif"/>
+  <img src="https://s8.gifyu.com/images/doneWithIt-_android_demo.gif"/>
 </p>
 
 # Done
@@ -26,14 +26,15 @@ Real-time mobile application to help you to sell the old things that you don't u
 <p>6- Sort listing by date of post.  ✅   </p>
 <p>7- Make app real time application using socket.io (frontend, backed).✅</p>
 <p>8- Handle authentication using jwt.✅ </p>
+<p>9- Handle update and delete listings.✅</p>
+<p>10- send verification email to user.✅</p>
 
 # Future
 
-<p>1- Handle update and delete listings.                                       ❌</p>
-<p>2- Handle update and delete listing image.                                  ❌ </p>
-<p>3- Forbidden delete listing image if there is only one.                     ❌</p>
-<p>4- Handle (add, update, delete) multiple images for listings.               ❌</p>
-<p>5- Handle change user profile pic.                                          ❌</p>
-<p>6- Message input screen ❌</p>
-<p>7- send message notification ❌</p>
-<p>8- Recommendation system. ❌</p>
+<p>1- Handle update and delete listing image.                                  ❌ </p>
+<p>2- Forbidden delete listing image if there is only one.                     ❌</p>
+<p>3- Handle (add, update, delete) multiple images for listings.               ❌</p>
+<p>4- Handle change user profile pic.                                          ❌</p>
+<p>5- Message input screen ❌</p>
+<p>6- send message notification ❌</p>
+<p>7- Recommendation system. ❌</p>
