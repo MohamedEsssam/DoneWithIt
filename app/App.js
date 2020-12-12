@@ -26,7 +26,7 @@ export default function App() {
     const token = await authStorage.getToken();
     if (!token) return;
 
-    setUser(jwdDecode(user));
+    setUser(jwdDecode(token));
   };
 
   if (!isReady)

@@ -19,13 +19,13 @@ function AppListingItems({ items, handleRefresh }) {
         ItemSeparatorComponent={ListItemSeparator}
         renderItem={({ item }) => (
           <Items
-            imageUri={`http://192.168.1.12:9000/listingImage-${item.listingId}`}
+            imageUri={`http://192.168.1.13:9000/listingImage-${item.listingId}`}
             title={item.title}
             price={item.price}
             onPress={() =>
               navigation.navigate("ListingDetails", {
                 ...item,
-                imageUri: `http://192.168.1.12:9000/listingImage-${item.listingId}`,
+                imageUri: `http://192.168.1.13:9000/listingImage-${item.listingId}`,
               })
             }
           />
