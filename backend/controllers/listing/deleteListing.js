@@ -1,3 +1,4 @@
+const io = require("../../startup/socket.io");
 const ListingServices = require("../../services/ListingServices");
 const ListingServicesInstance = new ListingServices();
 
@@ -11,6 +12,8 @@ module.exports = async (req, res) => {
   );
 
   if (!listing) return res.status(500).send("something error can't delete!");
+
+  io.getIO().emit("listing", { action: "delete", listing: listing });
 
   return res.status(200).send(listing);
 };

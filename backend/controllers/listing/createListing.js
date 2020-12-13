@@ -1,3 +1,4 @@
+const io = require("../../startup/socket.io");
 const ListingServices = require("../../services/ListingServices");
 const ListingServicesInstance = new ListingServices();
 
@@ -16,6 +17,8 @@ module.exports = async (req, res) => {
     userId
   );
   if (!listing) return res.status(500).send("something error happen !");
+
+  io.getIO().emit("listing", { action: "create", listing: listing });
 
   res.status(200).send(listing);
 };
