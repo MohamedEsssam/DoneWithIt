@@ -1,11 +1,8 @@
 const express = require("express");
 const app = express();
-
-require("./startup/config")();
-require("./startup/cors")(app);
-require("./startup/connectDB");
-// require("./models/createTables");
-require("./startup/routes")(app);
+const server = app.listen(8000, () => {
+  console.log("app listening on port 8000!");
+});
 
 app.use(
   express.static("public", {
@@ -14,6 +11,9 @@ app.use(
   })
 );
 
-app.listen(9000, () => {
-  console.log("app listening on port 9000!");
-});
+require("./startup/config")();
+require("./startup/cors")(app);
+require("./startup/connectDB");
+// require("./models/createTables");
+require("./startup/routes")(app);
+require("./startup/socket.io").init(server);
