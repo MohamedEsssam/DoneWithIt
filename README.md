@@ -28,8 +28,8 @@ Real-time mobile application to help you to sell the old things that you don't u
 <p>8- Handle authentication using jwt.✅ </p>
 <p>9- Handle update and delete listings.✅</p>
 <p>10- send verification email to user.✅</p>
-<p>11- verifiy account after send verification email to user.✅</p>
-
+<p>11- verify account after send verification email to user.✅</p>
+<p>12- finish send and get messages in backend✅</p>
 
 # Future
 
