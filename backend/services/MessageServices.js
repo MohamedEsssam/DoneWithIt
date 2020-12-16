@@ -1,4 +1,5 @@
 const sql = require("../startup/connectDB");
+const { generateId, validId } = require("./utils");
 
 class MessageServices {
   async getMessages(senderId, receiverId) {
@@ -19,13 +20,9 @@ class MessageServices {
   }
 
   async sendMessage(text, senderId, receiverId) {
-    const messageId = await this.generateId();
+    const messageId = await generateId();
 
-    if (
-      !this.validId(senderId) ||
-      !this.validId(receiverId) ||
-      !this.validId(messageId)
-    )
+    if (!validId(senderId) || !validId(receiverId) || !validId(messageId))
       return;
 
     const query =
@@ -52,22 +49,6 @@ class MessageServices {
         resolve(result[0]);
       });
     });
-  }
-
-  generateId() {
-    return new Promise((resolve, reject) => {
-      sql.query("SELECT UUID() AS listingId", (err, result, field) => {
-        if (err) reject(err);
-
-        resolve(result[0].listingId);
-      });
-    });
-  }
-
-  validId(id) {
-    const uuidRegex = /^[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}$/;
-
-    return uuidRegex.test(id);
   }
 }
 module.exports = MessageServices;

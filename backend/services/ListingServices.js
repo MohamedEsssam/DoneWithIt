@@ -1,4 +1,5 @@
 const sql = require("../startup/connectDB");
+const { generateId, validId } = require("./utils");
 
 class ListingServices {
   async getListings() {
@@ -28,7 +29,7 @@ class ListingServices {
   }
 
   async getListing(listingId) {
-    if (!this.validId(listingId)) return;
+    if (!validId(listingId)) return;
 
     const query =
       "SELECT BIN_TO_UUID(listingId) AS listingId, title, price, category, description, BIN_TO_UUID(userId) AS userId, u.name, u.email, (SELECT COUNT(listingId) FROM listing WHERE userId = l.userId) AS listingsCount FROM listing l JOIN user u USING (userId) WHERE listingId = UUID_TO_BIN(?);";
@@ -43,9 +44,9 @@ class ListingServices {
   }
 
   async createListing(title, price, category, description, userId) {
-    const listingId = await this.generateId();
+    const listingId = await generateId();
 
-    if (!this.validId(userId) || !this.validId(listingId)) return;
+    if (!validId(userId) || !validId(listingId)) return;
 
     const query =
       "INSERT INTO listing (listingId, title, price, category, description, postedDate, userId) VALUES (UUID_TO_BIN(?), ?, ?, ?, ?, NOW(), UUID_TO_BIN(?));";
@@ -59,8 +60,8 @@ class ListingServices {
     userId,
     { title, price, category, description }
   ) {
-    if (!this.validId(listingId)) return;
-    if (!this.validId(userId)) return;
+    if (!validId(listingId)) return;
+    if (!validId(userId)) return;
 
     let updateFields = "";
     if (title) updateFields = updateFields.concat(`title='${title}',`);
@@ -88,8 +89,8 @@ class ListingServices {
   }
 
   async deleteListing(listingId, userId) {
-    if (!this.validId(listingId)) return;
-    if (!this.validId(userId)) return;
+    if (!validId(listingId)) return;
+    if (!validId(userId)) return;
 
     const listing = await this.getListingById(listingId);
     if (!listing) return;
@@ -108,15 +109,6 @@ class ListingServices {
   /*******************************************************************
    *                     Helper Methods                              *
    ******************************************************************/
-  generateId() {
-    return new Promise((resolve, reject) => {
-      sql.query("SELECT UUID() AS listingId", (err, result, field) => {
-        if (err) reject(err);
-
-        resolve(result[0].listingId);
-      });
-    });
-  }
 
   async getListingById(listingId) {
     const query =
@@ -129,12 +121,6 @@ class ListingServices {
         resolve(result[0]);
       });
     });
-  }
-
-  validId(id) {
-    const uuidRegex = /^[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}$/;
-
-    return uuidRegex.test(id);
   }
 }
 
