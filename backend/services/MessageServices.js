@@ -40,9 +40,6 @@ class MessageServices {
     return await this.getMessageById(messageId);
   }
 
-  //TODO think for logic !!
-  async deleteMessage(messageId, senderId, receiverId) {}
-
   /*******************************************************************
    *                     Helper Methods                              *
    ******************************************************************/

@@ -1,26 +1,47 @@
 /***********************************************************************************/
-*            List to do in but first finish military services insha'llah           *
-*                               pray for me                                        *
+*                                     TODO                                         *
 /**********************************************************************************/
-1- sort listing by date of post.                                            ✅
-2- handle update and delete listings.                                       ❌
-3- handle update and delete listing image.                                  ❌
-4- forbidden delete listing image if there is only one.                     ❌
-5- handle (add, update, delete) multiple images for listings.               ❌
-3- handle change user profile pic.                                          ❌
-4- make app real time application using socket.io (frontend, backed).       ✅
-5- handle authentication using jwt.                                         ✅ 
 
+Done
+-----
+1- Login, Register,and logout users. ✅
 
+2- Show the list of Listings in feed. ✅
 
+3- User Account. ✅
 
+4- User profile and show his listings. ✅
 
+5- User messages. ✅
 
+6- Sort listing by date of post. ✅
 
+7- Make app real time application using socket.io (frontend, backed).✅
 
+8- Handle authentication using jwt.✅
 
+9- Handle update and delete listings.✅
 
+10- send verification email to user.✅
 
+11- verify account after send verification email to user.✅
 
+12- finish send and get messages in backend✅
 
+--------------------------------------------------------------------
 
+Future
+--------
+1- Handle update and delete listing image. ❌ 
+
+2- Forbidden delete listing image if there is only one. ❌ 
+
+3- Handle (add, update, delete) multiple images for listings. ❌ 
+
+4- Handle change user profile pic. ❌ 
+
+5- Message input screen ❌ 
+
+6- send message notification ❌ 
+
+7- Recommendation system. ❌ 

@@ -33,7 +33,15 @@ class ChatService {
     return await this.getChatById(chatId);
   }
 
-  async deleteChat() {}
+  //TODO think about how to delete from one side and still show on the other side until both delete
+  async deleteChat(chatId, senderId, receiverId) {
+    // 1- create new relation between user and chat
+    // 2- chatStatus -> chatId, userId, status(display, archived, deleted)
+    // 3- getAll chats for user that have status = display
+    // 4- create task run everyday to check if there is chatId duplicated
+    // 5- if found duplicated with status delete then delete this chat
+    // 6- create transaction to delete chat and message
+  }
 
   /*******************************************************************
    *                     Helper Methods                              *
