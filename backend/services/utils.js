@@ -1,3 +1,5 @@
+const sql = require("../startup/connectDB");
+
 const generateId = () => {
   return new Promise((resolve, reject) => {
     sql.query("SELECT UUID() AS listingId", (err, result, field) => {

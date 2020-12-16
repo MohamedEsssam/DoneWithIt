@@ -1,6 +1,8 @@
 const io = require("../../startup/socket.io");
+const ChatServices = require("../../services/ChatServices");
+const ChatServicesInstance = new ChatServices();
 const MessageServices = require("../../services/MessageServices");
-const MessageServicesInstance = new MessageServices();
+const MessageServicesInstance = new MessageServices(ChatServicesInstance);
 
 module.exports = async (req, res) => {
   const text = req.body.text;
