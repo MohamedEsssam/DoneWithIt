@@ -1,4 +1,5 @@
 require("./user");
 require("./listing");
-require("./message");
 require("./chat");
+require("./chatStatus");
+require("./message");
