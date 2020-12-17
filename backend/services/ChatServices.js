@@ -19,6 +19,19 @@ class ChatService {
     });
   }
 
+  async getChats(userId) {
+    const query =
+      "SELECT BIN_TO_UUID(chatId) chatId, createdAt, BIN_TO_UUID(senderId) senderId,BIN_TO_UUID(receiverId) receiverId, cs.status FROM chat c JOIN chatStatus cs USING (chatId) WHERE  userId = UUID_TO_BIN(?) AND status='visible' ORDER BY createdAt DESC ;";
+
+    return new Promise((resolve, reject) => {
+      sql.query(query, [userId], (err, result, field) => {
+        if (err) throw err;
+
+        resolve(result);
+      });
+    });
+  }
+
   async createOrGetChat(senderId, receiverId) {
     const chat = await this.getChat(senderId, receiverId);
     if (chat) return chat;
@@ -42,12 +55,13 @@ class ChatService {
   }
 
   //TODO think about how to delete from one side and still show on the other side until both delete
-  async deleteChat(chatId, senderId, receiverId) {
+  async deleteChat(chatId, userId) {
     // 1- create new relation between user and chat
-    // 2- chatStatus -> chatId, userId, status(display, archived, deleted)
-    // 3- getAll chats for user that have status = display
+    // 2- chatStatus -> chatId, userId, status(visible, invisible, deleted) default visible
+    // 3- for each delete -> update status column to deleted
+    // 3- getAll chats that have status = deleted
     // 4- create task run everyday to check if there is chatId duplicated
-    // 5- if found duplicated with status delete then delete this chat
+    // 5- if found duplicated with status deleted then delete this chat
     // 6- create transaction to delete chat and message
   }
 
