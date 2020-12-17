@@ -28,8 +28,16 @@ class ChatService {
     if (!validId(senderId) || !validId(receiverId) || !validId(chatId)) return;
 
     const query =
-      "INSERT INTO chat (chatId, createdAt, senderId, receiverId) VALUES (UUID_TO_BIN(?), NOW(), UUID_TO_BIN(?), UUID_TO_BIN(?));";
-    sql.query(query, [chatId, senderId, receiverId]);
+      "START TRANSACTION; INSERT INTO chat (chatId, createdAt, senderId, receiverId) VALUES (UUID_TO_BIN(?), NOW(), UUID_TO_BIN(?), UUID_TO_BIN(?)); INSERT INTO chatStatus (chatStatusId, chatId, userId) VALUES (UUID_TO_BIN(UUID()), UUID_TO_BIN(?), UUID_TO_BIN(?)), (UUID_TO_BIN(UUID()), UUID_TO_BIN(?), UUID_TO_BIN(?)); COMMIT;";
+    sql.query(query, [
+      chatId,
+      senderId,
+      receiverId,
+      chatId,
+      senderId,
+      chatId,
+      receiverId,
+    ]);
     return await this.getChatById(chatId);
   }
 
