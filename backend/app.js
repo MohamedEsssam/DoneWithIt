@@ -17,4 +17,4 @@ require("./startup/connectDB");
 require("./startup/routes")(app);
 require("./startup/socket.io").init(server);
 // require("./models/createTables");
-// require("./jobs/runJobs");
+require("./jobs/runJobs");

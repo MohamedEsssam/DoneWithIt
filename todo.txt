@@ -4,17 +4,17 @@
 
 Done
 -----
-1- Login, Register,and logout users. ✅
+1- Login, Register,and logout users.✅
 
-2- Show the list of Listings in feed. ✅
+2- Show the list of Listings in feed.✅
 
-3- User Account. ✅
+3- User Account.✅
 
-4- User profile and show his listings. ✅
+4- User profile and show his listings.✅
 
-5- User messages. ✅
+5- User messages.✅
 
-6- Sort listing by date of post. ✅
+6- Sort listing by date of post.✅
 
 7- Make app real time application using socket.io (frontend, backed).✅
 
@@ -22,26 +22,32 @@ Done
 
 9- Handle update and delete listings.✅
 
-10- send verification email to user.✅
+10- Send verification email to user.✅
 
-11- verify account after send verification email to user.✅
+11- Verify account after send verification email to user.✅
 
-12- finish send and get messages in backend✅
+12- Finish send and get messages in backend.✅
+
+13- Finish create, delete, and get chats in backend.✅
+
+14-  Delete chats from one side that delete chat and show to anther who didn't delete chat until he delete chat too.✅
+
+15- Create task run every 12 hours to delete deleted chats from DB.✅
 
 --------------------------------------------------------------------
 
 Future
 --------
-1- Handle update and delete listing image. ❌ 
+1- Handle update and delete listing image.❌ 
 
-2- Forbidden delete listing image if there is only one. ❌ 
+2- Forbidden delete listing image if there is only one.❌ 
 
-3- Handle (add, update, delete) multiple images for listings. ❌ 
+3- Handle (add, update, delete) multiple images for listings.❌ 
 
-4- Handle change user profile pic. ❌ 
+4- Handle change user profile pic.❌ 
 
-5- Message input screen ❌ 
+5- Message input screen.❌ 
 
-6- send message notification ❌ 
+6- Send message notification.❌ 
 
-7- Recommendation system. ❌ 
+7- Recommendation system.❌ 

@@ -59,7 +59,10 @@ class ChatService {
     // 1- create new relation between user and chat
     // 2- chatStatus -> chatId, userId, status(visible, invisible, deleted) default visible
     // 3- for each delete -> update status column to deleted
-    // 4- getAll chats that have status = deleted
+    // 4- getAll chats that have 2 status = deleted
+    // 5- create task run twice 12 hours to getAll chats that have 2 status = deleted
+    // 6- create transaction to delete chat, chatStatus, and message
+
     const chat = this.getChatByIdAndUserId(chatId, userId);
     if (!chat) return;
     const query =
@@ -69,9 +72,6 @@ class ChatService {
     });
 
     return chat;
-    // 5- create task run everyday to check if there is chatId duplicated
-    // 6- if found duplicated with status deleted then delete this chat
-    // 7- create transaction to delete chat and message
   }
 
   /*******************************************************************
@@ -103,8 +103,29 @@ class ChatService {
     });
   }
 
-  async getDeletedChats() {}
-  async deleteChatFromDB() {}
+  async getDeletedChats() {
+    const query =
+      "SELECT BIN_TO_UUID(chatId) chatId FROM chatStatus WHERE status = 'deleted' GROUP BY chatId HAVING COUNT(chatId) = 2";
+
+    return new Promise((resolve, reject) => {
+      sql.query(query, (err, result, field) => {
+        if (err) throw err;
+
+        resolve(result);
+      });
+    });
+  }
+
+  async deleteChatFromDB(chatId) {
+    if (!chatId) return;
+
+    const query =
+      "START TRANSACTION; DELETE FROM message WHERE chatId = UUID_TO_BIN(?); DELETE FROM chatStatus WHERE chatId = UUID_TO_BIN(?); DELETE FROM chat WHERE chatId = UUID_TO_BIN(?); COMMIT;";
+
+    sql.query(query, [chatId, chatId, chatId], (err, result, field) => {
+      if (err) throw err;
+    });
+  }
 }
 
 module.exports = ChatService;
