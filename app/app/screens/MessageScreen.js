@@ -15,15 +15,18 @@ function MessageScreen({ navigation }) {
   let [items, setItems] = useState([]);
   const [fetched, setFetched] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
+  const [didMount, setDidMount] = useState(false);
   const { user } = useContext(UserContext);
 
   let chats = [];
 
   useEffect(() => {
+    setDidMount(true);
     const socket = openSocket("http://192.168.1.13:9000");
     if (!fetched) fetchChats();
-
     connectToChats(socket);
+
+    return () => setDidMount(false);
   }, []);
 
   const connectToChats = (socket) => {
