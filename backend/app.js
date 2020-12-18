@@ -14,6 +14,7 @@ app.use(
 require("./startup/config")();
 require("./startup/cors")(app);
 require("./startup/connectDB");
-// require("./models/createTables");
 require("./startup/routes")(app);
 require("./startup/socket.io").init(server);
+// require("./models/createTables");
+// require("./jobs/runJobs");
