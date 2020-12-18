@@ -72,7 +72,7 @@ function MessageScreen({ navigation }) {
             <AppListInfo
               image={item.image}
               title={item.callee}
-              subTitle={item.chatId}
+              subTitle={item.lastMessage}
               onPress={() => console.log(item)}
               style={{ borderRadius: 35 }}
               touchable={true}

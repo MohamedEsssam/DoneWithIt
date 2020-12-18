@@ -21,7 +21,7 @@ class ChatService {
 
   async getChats(userId) {
     const query =
-      "SELECT DISTINCT BIN_TO_UUID(chatId) chatId, createdAt, BIN_TO_UUID(senderId) senderId,BIN_TO_UUID(receiverId) receiverId, cs.status, GROUP_CONCAT(CASE WHEN u.userId != UUID_TO_BIN(?) THEN u.name END ) AS callee FROM chat c JOIN chatStatus cs USING (chatId) JOIN user u ON c.receiverId = u.userId OR c.senderId = u.userId WHERE cs.userId = UUID_TO_BIN(?) AND cs.status='visible' GROUP BY chatId, createdAt, senderId, receiverId ORDER BY createdAt DESC; ";
+      "SELECT DISTINCT BIN_TO_UUID(chatId) chatId, createdAt, BIN_TO_UUID(senderId) senderId,BIN_TO_UUID(receiverId) receiverId, cs.status, GROUP_CONCAT(CASE WHEN u.userId != UUID_TO_BIN(?) THEN u.name END ) AS callee, (SELECT DISTINCT (SELECT text FROM message WHERE sentDate = (SELECT (MAX(sentDate))FROM message WHERE chatId = c.chatId))FROM message) AS lastMessage FROM chat c JOIN chatStatus cs USING (chatId) JOIN user u ON c.receiverId = u.userId OR c.senderId = u.userId WHERE cs.userId = UUID_TO_BIN(?) AND cs.status='visible' GROUP BY chatId, createdAt, senderId, receiverId, c.chatId ORDER BY createdAt DESC; ";
 
     return new Promise((resolve, reject) => {
       sql.query(query, [userId, userId], (err, result, field) => {
