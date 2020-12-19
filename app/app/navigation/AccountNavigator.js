@@ -3,6 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import AccountScreen from "../screens/AccountScreen";
 import MessageScreen from "../screens/MessageScreen";
+import MessageFormScreen from "../screens/MessageFormScreen";
 import MyListingScreen from "../screens/MyListingScreen";
 import ListingDetailsScreen from "../screens/ListingDetailsScreen";
 import ViewImageScreen from "../screens/ViewImageScreen";
@@ -16,6 +17,7 @@ const AccountNavigator = () => (
       options={{ headerShown: false }}
     />
     <Stack.Screen name="Messages" component={MessageScreen} />
+    <Stack.Screen name="MessagesForm" component={MessageFormScreen} />
     <Stack.Screen
       name="MyListings"
       component={MyListingScreen}

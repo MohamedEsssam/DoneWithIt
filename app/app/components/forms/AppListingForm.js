@@ -95,7 +95,7 @@ function AppListingForm(props) {
             iconType="subtitles-outline"
             multiline
             autoCapitalize="none"
-            autoCorrect={false}
+            autoCorrect={true}
             keyboardType="default"
             placeholder="Description"
           />

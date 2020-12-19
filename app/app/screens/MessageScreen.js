@@ -73,7 +73,7 @@ function MessageScreen({ navigation }) {
               image={item.image}
               title={item.callee}
               subTitle={item.lastMessage}
-              onPress={() => console.log(item)}
+              onPress={() => navigation.navigate("MessagesForm", item)}
               style={{ borderRadius: 35 }}
               touchable={true}
               renderRightActions={() => (

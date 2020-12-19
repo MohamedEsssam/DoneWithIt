@@ -9,6 +9,7 @@ import WelcomeScreen from "./app/screens/WelcomeScreen";
 import LoginScreen from "./app/screens/LoginScreen";
 import RegisterScreen from "./app/screens/RegisterScreen";
 import ListingFormScreen from "./app/screens/ListingFormScreen";
+import MessageFormScreen from "./app/screens/MessageFormScreen";
 import ListingsScreen from "./app/screens/ListingsScreen";
 import ViewImageScreen from "./app/screens/ViewImageScreen";
 import AccountScreen from "./app/screens/AccountScreen";

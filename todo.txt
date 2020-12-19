@@ -34,6 +34,9 @@ Done
 
 15- Create task run every 12 hours to delete deleted chats from DB.✅
 
+16- Message input screen, send , and display messages.✅
+
+
 --------------------------------------------------------------------
 
 Future
@@ -46,8 +49,6 @@ Future
 
 4- Handle change user profile pic.❌ 
 
-5- Message input screen.❌ 
+5- Send message notification.❌ 
 
-6- Send message notification.❌ 
-
-7- Recommendation system.❌ 
+6- Recommendation system.❌ 

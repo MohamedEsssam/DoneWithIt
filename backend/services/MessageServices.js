@@ -6,20 +6,16 @@ class MessageServices {
     this.ChatServices = ChatServices;
   }
 
-  async getMessages(senderId, receiverId) {
+  async getMessages(chatId) {
     const query =
-      "SELECT BIN_TO_UUID(messageId) messageId, text, sentDate, BIN_TO_UUID(senderId) senderId,BIN_TO_UUID(receiverId) receiverId FROM message WHERE (senderId = UUID_TO_BIN(?) AND receiverId = UUID_TO_BIN(?)) OR (senderId = UUID_TO_BIN(?) AND receiverId = UUID_TO_BIN(?)) ORDER BY sentDate DESC ;";
+      "SELECT BIN_TO_UUID(messageId) messageId, text, sentDate, BIN_TO_UUID(chatId) chatId FROM message WHERE chatId = UUID_TO_BIN(?) ORDER BY sentDate ASC ;";
 
     return new Promise((resolve, reject) => {
-      sql.query(
-        query,
-        [senderId, receiverId, receiverId, senderId],
-        (err, result, field) => {
-          if (err) throw err;
+      sql.query(query, [chatId], (err, result, field) => {
+        if (err) throw err;
 
-          resolve(result);
-        }
-      );
+        resolve(result);
+      });
     });
   }
 

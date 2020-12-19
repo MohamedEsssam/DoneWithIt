@@ -33,6 +33,7 @@ Real-time mobile application to help you to sell the old things that you don't u
 <p>13- Finish create, delete, and get chats in backend.✅</p>
 <p>14-  Delete chats from one side that delete chat and show to anther who didn't delete chat until he delete chat too.✅</p>
 <p>15- Create task run every 12 hours to delete deleted chats from DB.✅</p>
+<p>16- Message input screen, send , and display messages.✅</p>
 
 # Future
 
@@ -40,6 +41,5 @@ Real-time mobile application to help you to sell the old things that you don't u
 <p>2- Forbidden delete listing image if there is only one.❌</p>
 <p>3- Handle (add, update, delete) multiple images for listings.❌</p>
 <p>4- Handle change user profile pic.❌</p>
-<p>5- Message input screen.❌</p>
-<p>6- Send message notification.❌</p>
-<p>7- Recommendation system.❌</p>
+<p>5- Send message notification.❌</p>
+<p>6- Recommendation system.❌</p>
