@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useKeyboard } from "@react-native-community/hooks";
 import { View, StyleSheet, FlatList, KeyboardAvoidingView } from "react-native";
 import openSocket from "socket.io-client";
 import messageApi from "../services/message";
@@ -8,6 +9,7 @@ import AppScreen from "../components/AppScreen";
 import MessageItem from "../components/lists/MessageItem";
 
 function MessageFormScreen({ route }) {
+  const keyboard = useKeyboard();
   const scrollView = useRef();
 
   const chatId = route.params.chatId;
@@ -46,6 +48,10 @@ function MessageFormScreen({ route }) {
     setItems(() => [...[], ...messages]);
   };
 
+  const isKeyboardShow = () => {
+    return keyboard.keyboardShown;
+  };
+
   return (
     <AppScreen style={styles.container}>
       <KeyboardAvoidingView
@@ -53,31 +59,39 @@ function MessageFormScreen({ route }) {
         behavior={Platform.OS === "ios" ? "position" : undefined}
         keyboardVerticalOffset={45}
       >
-        <View style={styles.message}>
-          <FlatList
-            ref={scrollView}
-            onContentSizeChange={() =>
-              scrollView.current.scrollToEnd({ animated: true })
-            }
-            data={items}
-            showsVerticalScrollIndicator={false}
-            keyExtractor={(item) => item.messageId.toString()}
-            renderItem={({ item }) => (
-              <MessageItem
-                message={item.text}
-                isMine={item.text === "haha !!"}
-              />
-            )}
-            refreshing={refreshing}
-            onRefresh={() => {
-              setRefreshing(true);
-              fetchMessages();
-              setRefreshing(false);
-            }}
-          />
-        </View>
-        <View style={styles.input}>
-          <AppMessageForm />
+        <View
+          style={
+            isKeyboardShow()
+              ? { height: 320, top: "59%" }
+              : { height: 555, bottom: "2%" }
+          }
+        >
+          <View style={styles.message}>
+            <FlatList
+              ref={scrollView}
+              onContentSizeChange={() =>
+                scrollView.current.scrollToEnd({ animated: true })
+              }
+              data={items}
+              showsVerticalScrollIndicator={false}
+              keyExtractor={(item) => item.messageId.toString()}
+              renderItem={({ item }) => (
+                <MessageItem
+                  message={item.text}
+                  isMine={item.text === "haha !!"}
+                />
+              )}
+              refreshing={refreshing}
+              onRefresh={() => {
+                setRefreshing(true);
+                fetchMessages();
+                setRefreshing(false);
+              }}
+            />
+          </View>
+          <View style={styles.input}>
+            <AppMessageForm />
+          </View>
         </View>
       </KeyboardAvoidingView>
     </AppScreen>
@@ -89,7 +103,10 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   message: {
-    height: "84%",
+    position: "relative",
+    top: 10,
+    zIndex: -1,
+    height: "85%",
   },
   input: {
     position: "relative",

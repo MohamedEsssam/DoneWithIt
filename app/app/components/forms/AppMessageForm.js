@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     flexDirection: "row",
-    backgroundColor: colors.light,
+    backgroundColor: "transparent",
     alignItems: "center",
     overflow: "hidden",
     paddingLeft: 5,
