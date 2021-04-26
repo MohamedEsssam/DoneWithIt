@@ -1,22 +1,28 @@
 import React from "react";
 import { View, StyleSheet, KeyboardAvoidingView } from "react-native";
 import * as Yup from "yup";
+import messageApi from "../../services/message";
 
 import FromContainer from "./FormContainer";
 import FormField from "./FormField";
-import colors from "../../config/colors";
 import SubmitMessageButton from "./SubmitMessageButton";
 
 const validationSchema = Yup.object().shape({
   text: Yup.string().required().label("text"),
 });
 
-const onSubmit = (values, { resetForm }) => {
-  console.log(values);
-  resetForm();
-};
+function AppMessageForm({ chat }) {
+  const onSubmit = async (values, { resetForm }) => {
+    values["senderId"] = chat["senderId"];
+    values["receiverId"] = chat["receiverId"];
 
-function AppMessageForm(props) {
+    const { data: message, ok: response } = await messageApi.sendMessage(
+      values
+    );
+    if (!response) return console.log("something error happen");
+
+    resetForm();
+  };
   return (
     <FromContainer
       initialValues={{ text: "" }}

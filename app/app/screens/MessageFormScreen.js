@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useKeyboard } from "@react-native-community/hooks";
 import { View, StyleSheet, FlatList, KeyboardAvoidingView } from "react-native";
 import openSocket from "socket.io-client";
@@ -7,8 +7,13 @@ import messageApi from "../services/message";
 import AppMessageForm from "../components/forms/AppMessageForm";
 import AppScreen from "../components/AppScreen";
 import MessageItem from "../components/lists/MessageItem";
+import UserContext from "../auth/context";
 
 function MessageFormScreen({ route }) {
+  const chat = route.params;
+
+  const { user } = useContext(UserContext);
+
   const keyboard = useKeyboard();
   const scrollView = useRef();
 
@@ -43,7 +48,7 @@ function MessageFormScreen({ route }) {
   };
 
   const createMessage = (message) => {
-    messages.unshift(message);
+    messages.push(message);
 
     setItems(() => [...[], ...messages]);
   };
@@ -78,7 +83,7 @@ function MessageFormScreen({ route }) {
               renderItem={({ item }) => (
                 <MessageItem
                   message={item.text}
-                  isMine={item.text === "haha !!"}
+                  isMine={item["senderId"] === user["userId"]}
                 />
               )}
               refreshing={refreshing}
@@ -90,7 +95,7 @@ function MessageFormScreen({ route }) {
             />
           </View>
           <View style={styles.input}>
-            <AppMessageForm />
+            <AppMessageForm chat={chat} />
           </View>
         </View>
       </KeyboardAvoidingView>

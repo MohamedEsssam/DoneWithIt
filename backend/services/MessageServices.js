@@ -8,7 +8,7 @@ class MessageServices {
 
   async getMessages(chatId) {
     const query =
-      "SELECT BIN_TO_UUID(messageId) messageId, text, sentDate, BIN_TO_UUID(chatId) chatId FROM message WHERE chatId = UUID_TO_BIN(?) ORDER BY sentDate ASC ;";
+      "SELECT BIN_TO_UUID(messageId) messageId, text, sentDate, BIN_TO_UUID(chatId) chatId, BIN_TO_UUID(senderId) senderId FROM message JOIN chat USING(chatId) WHERE chatId = UUID_TO_BIN(?) ORDER BY sentDate ASC ;";
 
     return new Promise((resolve, reject) => {
       sql.query(query, [chatId], (err, result, field) => {

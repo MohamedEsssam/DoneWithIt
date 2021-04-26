@@ -7,7 +7,7 @@ const getMessages = (chatId) => {
 };
 
 const sendMessage = (data) => {
-  return client.post(`${endpoint}`, { data });
+  return client.post(`${endpoint}`, data);
 };
 
 export default {
