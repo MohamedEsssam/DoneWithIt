@@ -1,22 +1,79 @@
-# DoneWithIt
-
-Real-time mobile application to help you to sell the old things that you don't use and don't need, and the person who interset in this product will send you messages to reach you to sell the product, it's suitable for iPhone and Android devices. Technologies used in the application: React-Native, NodeJs, MySql, Socket.io.
-
-# Demo
-
-### 1- ios
-
 <p align="center">
-  <img src="https://s8.gifyu.com/images/doneWithIt_ios_demo.gif"/>
+    <a href="https://expo.io/@mohamedesssam/projects/donewithit">
+        <img src="app/app/assets/logo-red.png" width="100" alt="Done With It Logo"/>
+    </a>
+    <h1 align="center"> Done With It </h1>
 </p>
 
-### 2- android
-
 <p align="center">
-  <img src="https://s8.gifyu.com/images/doneWithIt-_android_demo.gif"/>
+    An application for selling stuff you do not need anymore.
 </p>
 
-# Done
+<p align="center">
+    <a href="https://github.com/MohamedEsssam/DoneWithIt">
+        <img src="https://img.shields.io/github/last-commit/MohamedEsssam/DoneWithIt" alt="Last Commit Shield Badge"/>
+    </a>
+    <a href="https://github.com/MohamedEsssam/DoneWithIt/archive/master.zip">
+        <img src="https://img.shields.io/github/repo-size/MohamedEsssam/DoneWithIt" alt="Repository Size Shield Badge"/>
+    </a>
+    <a href="https://www.npmjs.com/package/npm">
+        <img src="https://img.shields.io/npm/v/npm" alt="NPM Shield Badge"/>
+    </a>
+    <a href="https://github.com/MohamedEsssam/DoneWithIt/stargazers">
+        <img src="https://img.shields.io/github/stars/MohamedEsssam/DoneWithIt?style=social" alt="Done With It Stars" >
+    </a>
+</p>
+<p align="center">
+    This repository consists of a <strong>React Native Marketplace Application</strong> built with <strong>Expo CLI</strong> and <strong>Server</Strong> build with <strong>NodeJs</strong> and <strong>MySQL</strong>.
+</p>
+
+<p align="center">
+    Done With It offers free user to user classifieds listings. <strong>Buy</strong> and <strong>Sell</strong>!
+</p>
+
+## Application features
+
+* `11 Screens` - Welcome, Register, Login, Account, Upload, View Image, Messages, Message Edit, Listings, Listing Edit, and Listing Details Screens.
+
+* `Animation` - Using Lottie (Activity Indicator, done animation and more).
+
+* `Authentication` - User authentication (Register, Login/out) using `Jwt`.
+
+* `Verification` - Send verification email to verify user email using `nodemailer `
+
+* `Real time application` - Send and receive data using `Socket.io`
+
+* `Cache Layer` - Caching Images.
+
+* `Custom and Reusable Hooks` - Api, Auth, and Notifications.
+
+* `Form Validation` - Using Formik.
+
+* `Gesture Handler` - Swipe to delete, and pull to refresh.
+
+* `Navigation` - Using React Navigation and Stack Navigator.
+
+* `Push Notifications` - When messages are received.
+
+* `Reusable Components` - Button, Icon, Forms, Screen, Text, Text Input and more.
+
+* `Splash Screen` - Logo Screen Design while the app is launching.
+
+## Demo
+
+* `ios`
+
+<p align="center">
+  <img src="https://s8.gifyu.com/images/doneWithIt_ios_demo.gif" width="300"/>
+</p>
+
+* `android`
+
+<p align="center">
+  <img src="https://s8.gifyu.com/images/doneWithIt-_android_demo.gif" width="300"/>
+</p>
+
+## Done
 
 <p>1- Login, Register,and logout users. ✅</p>
 <p>2- Show the list of Listings in feed. ✅</p>
@@ -35,7 +92,7 @@ Real-time mobile application to help you to sell the old things that you don't u
 <p>15- Create task run every 12 hours to delete deleted chats from DB.✅</p>
 <p>16- Message input screen, send , and display messages.✅</p>
 
-# Future
+## Future
 
 <p>1- Handle update and delete listing image.❌ </p>
 <p>2- Forbidden delete listing image if there is only one.❌</p>
