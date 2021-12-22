@@ -59,22 +59,7 @@
 
 * `Splash Screen` - Logo Screen Design while the app is launching.
 
-## Demo
-
-* `ios`
-
-<p align="center">
-  <img src="https://s8.gifyu.com/images/doneWithIt_ios_demo.gif" width="300"/>
-</p>
-
-* `android`
-
-<p align="center">
-  <img src="https://s8.gifyu.com/images/doneWithIt-_android_demo.gif" width="300"/>
-</p>
-
 ## Done
-
 <p>1- Login, Register,and logout users. ✅</p>
 <p>2- Show the list of Listings in feed. ✅</p>
 <p>3- User Account. ✅</p>
